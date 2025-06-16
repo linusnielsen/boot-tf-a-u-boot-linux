@@ -86,7 +86,7 @@ u-boot.clean:
 tf-a.build: u-boot.build
 	export CROSS_COMPILE=$(CROSS_COMPILE) ; \
 	cd $(SRC_DIR)/tf-a; \
-	make PLAT=fvp DEBUG=1 BL33=$(SRC_DIR)/u-boot/u-boot.bin all fip V=1 ENABLE_FEAT_MTE2=1
+	make PLAT=fvp DEBUG=1 BL33=$(SRC_DIR)/u-boot/u-boot.bin all fip V=1 FVP_HW_CONFIG_ADDR=0x80070000 ENABLE_FEAT_MTE2=0 CTX_INCLUDE_AARCH32_REGS=0 HW_ASSISTED_COHERENCY=1 USE_COHERENT_MEM=0 FVP_TRUSTED_SRAM_SIZE=384
 
 tf-a.clean: 
 	export CROSS_COMPILE=$(CROSS_COMPILE) ; \
