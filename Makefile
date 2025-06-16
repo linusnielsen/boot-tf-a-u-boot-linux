@@ -1,7 +1,7 @@
 SRC_DIR 		:= $(shell pwd)/src
 TOOLS_DIR 		:= $(shell pwd)/tools
 
-CROSS_COMPILE 	:= $(TOOLS_DIR)/arm-gnu-toolchain-13.2.Rel1-x86_64-aarch64-none-linux-gnu/bin/aarch64-none-linux-gnu-
+CROSS_COMPILE 	:= $(TOOLS_DIR)/arm-gnu-toolchain-14.2.rel1-x86_64-aarch64-none-linux-gnu/bin/aarch64-none-linux-gnu-
 #CC 				:= CC=$(TOOLS_DIR)/clang+llvm-18.1.8-x86_64-linux-gnu-ubuntu-18.04/bin/clang
 CC 				:= CC=$(CROSS_COMPILE)gcc
 
@@ -63,10 +63,10 @@ clone:
 download:
 	@ mkdir -p $(TOOLS_DIR)
 	@ [ -f "$(TOOLS_DIR)/FVP_Base_RevC-2xAEMvA_11.25_15_Linux64.tgz" ] || wget -P $(TOOLS_DIR) https://armkeil.blob.core.windows.net/developer/Files/downloads/ecosystem-models/FM_11_25/FVP_Base_RevC-2xAEMvA_11.25_15_Linux64.tgz
-	@ [ -f "$(TOOLS_DIR)/arm-gnu-toolchain-13.2.rel1-x86_64-aarch64-none-linux-gnu.tar.xz" ] || wget -P $(TOOLS_DIR) https://developer.arm.com/-/media/Files/downloads/gnu/13.2.rel1/binrel/arm-gnu-toolchain-13.2.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+	@ [ -f "$(TOOLS_DIR)/arm-gnu-toolchain-14.2.rel1-x86_64-aarch64-none-linux-gnu.tar.xz" ] || wget -P $(TOOLS_DIR) https://developer.arm.com/-/media/Files/downloads/gnu/14.2.rel1/binrel/arm-gnu-toolchain-14.2.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
 	@ [ -f "$(TOOLS_DIR)/clang+llvm-18.1.8-x86_64-linux-gnu-ubuntu-18.04.tar.xz" ] || wget -P $(TOOLS_DIR) https://github.com/llvm/llvm-project/releases/download/llvmorg-18.1.8/clang+llvm-18.1.8-x86_64-linux-gnu-ubuntu-18.04.tar.xz
 	@ [ -d "$(TOOLS_DIR)/Base_RevC_AEMvA_pkg" ] || tar -C $(TOOLS_DIR) -zxvf $(TOOLS_DIR)/FVP_Base_RevC-2xAEMvA_11.25_15_Linux64.tgz
-	@ [ -d "$(TOOLS_DIR)/arm-gnu-toolchain-13.2.Rel1-x86_64-aarch64-none-linux-gnu" ] || tar -C $(TOOLS_DIR) -xvf $(TOOLS_DIR)/arm-gnu-toolchain-13.2.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+	@ [ -d "$(TOOLS_DIR)/arm-gnu-toolchain-14.2.rel1-x86_64-aarch64-none-linux-gnu" ] || tar -C $(TOOLS_DIR) -xvf $(TOOLS_DIR)/arm-gnu-toolchain-14.2.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
 	@ [ -d "$(TOOLS_DIR)/clang+llvm-18.1.8-x86_64-linux-gnu-ubuntu-18.04" ] || tar -C $(TOOLS_DIR) -xvf $(TOOLS_DIR)/clang+llvm-18.1.8-x86_64-linux-gnu-ubuntu-18.04.tar.xz
 
 
@@ -133,7 +133,7 @@ fs.build:
 
 fs.clean: 
 	rm -rf $(GRUB_BUSYBOX_IMG)
-		
+
 build: u-boot.build tf-a.build linux.build buildroot.build
 
 run:
