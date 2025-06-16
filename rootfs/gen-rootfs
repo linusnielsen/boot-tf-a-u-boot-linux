@@ -13,9 +13,9 @@ cat part_table > $IMG_BB
 dd if=/dev/zero of=ext3_part bs=$BLOCK_SIZE count=$EXT3_SIZE
 mkdir -p mnt
 
-mkfs.ext3 -F ext3_part
+/sbin/mkfs.ext3 -F ext3_part
 
-fuse-ext2 ext3_part mnt -o rw+
+fuse2fs ext3_part mnt -o fakeroot
 cp -rf rootfs/* mnt/
 sync
 fusermount -u mnt
@@ -26,5 +26,5 @@ cat ext3_part >> $IMG_BB
 #Space for backup partition table at the bottom (1M)
 cat part_table >> $IMG_BB
 
-(echo n; echo 1; echo $PART_START; echo +$((EXT3_SIZE)); echo 8300; echo w; echo y) | gdisk $IMG_BB
+(echo n; echo 1; echo $PART_START; echo +$((EXT3_SIZE)); echo 8300; echo w; echo y) | /sbin/gdisk $IMG_BB
 
