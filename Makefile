@@ -56,7 +56,7 @@ all: clone download build
 clone:
 	@ mkdir -p $(SRC_DIR)
 	@ [ -d "$(SRC_DIR)/u-boot" ] || git clone https://git.denx.de/u-boot $(SRC_DIR)/u-boot
-	@ [ -d "$(SRC_DIR)/tf-a" ] || git clone https://git.trustedfirmware.org/TF-A/trusted-firmware-a  $(SRC_DIR)/tf-a
+	@ [ -d "$(SRC_DIR)/tf-a" ] || git clone https://git.trustedfirmware.org/TF-A/trusted-firmware-a  $(SRC_DIR)/tf-a && cd $(SRC_DIR)/tf-a && git checkout d154fe2bf0616f2e78965207c32b6e83ba12292e
 	@ [ -d "$(SRC_DIR)/linux" ] || git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git $(SRC_DIR)/linux
 	@ [ -d "$(SRC_DIR)/buildroot" ] || git clone https://gitlab.com/buildroot.org/buildroot.git $(SRC_DIR)/buildroot
 
